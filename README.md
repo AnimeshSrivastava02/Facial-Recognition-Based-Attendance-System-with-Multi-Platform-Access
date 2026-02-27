@@ -1,43 +1,152 @@
-# Facial-Recognition-Based-Attendance-System-with-Multi-Platform-Access
-<<<<<<< HEAD
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 🎓 Smart Attendance System using Face Recognition
 
-## Getting Started
+🚀 An intelligent, secure, and fully automated student attendance system powered by real-time face recognition. This system eliminates proxy attendance and manual errors — modernizing classroom management with the power of AI and full-stack web development.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## 📸 Project Demo
+
+📺 [Watch Demo on YouTube](https://youtu.be/ocK9qXiKrKs?si=jWXdLqLMLO2NKFSy)
+
+---
+
+## 🌟 Key Features
+
+* 🧠 Real-time face detection and recognition using `@vladmandic/face-api`
+* 🎥 Webcam-based attendance directly in the browser
+* ✅ Automatic attendance marking on successful face match
+* 🗕️ Daily logs stored in PostgreSQL using Drizzle ORM
+* 🔐 Kinde authentication with role-based access
+* 🧑‍🏫 Separate Teacher/Admin dashboards
+* 📊 Interactive UI with attendance insights
+* ⚡ Built using **Next.js**, **Drizzle**, **Neon DB**, and modern JS
+
+---
+
+## 🛠️ Tech Stack
+
+### Frontend
+
+![Next.js](https://img.shields.io/badge/Next.js-000?logo=next.js\&logoColor=white)
+![React](https://img.shields.io/badge/React-20232A?logo=react\&logoColor=61DAFB)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?logo=tailwind-css\&logoColor=white)
+
+### Backend & Auth
+
+![Node.js](https://img.shields.io/badge/Node.js-339933?logo=node.js\&logoColor=white)
+![Drizzle ORM](https://img.shields.io/badge/Drizzle-3178c6?logo=typescript\&logoColor=white)
+![Kinde](https://img.shields.io/badge/Kinde-000?logo=kinde\&logoColor=white)
+
+### Database
+
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?logo=postgresql\&logoColor=white)
+![Neon](https://img.shields.io/badge/Neon_DB-000000?logo=postgresql\&logoColor=white)
+
+### Face Recognition
+
+![face-api.js](https://img.shields.io/badge/face--api.js-000?logo=javascript\&logoColor=yellow)
+![vladmandic/face-api](https://img.shields.io/badge/vladmandic%2Fface--api-black?logo=github\&logoColor=white)
+![Webcam Access](https://img.shields.io/badge/Webcam-black?logo=camera\&logoColor=white)
+
+---
+
+## 🧹 System Architecture
+
+```
+[User Interface]
+       ↓
+[Webcam Capturing via Face API]
+       ↓
+[Face Matching with /public/faces folder]
+       ↓
+[Attendance Marking in PostgreSQL via Drizzle]
+       ↓
+[Real-time Dashboard / Statistics]
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## 🧪 How It Works
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+1. Student stands in front of the webcam.
+2. Face is detected using `face-api.js`.
+3. If matched, attendance is marked automatically.
+4. If unmatched, attendance is not marked.
+5. Admin/Teacher can view all attendance records on the dashboard.
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## 🔧 Setup Instructions
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. **Clone the Repository**
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+   ```bash
+   git clone https://github.com/yourusername/smart-attendance-system.git
+   cd smart-attendance-system
+   ```
 
-## Deploy on Vercel
+2. **Install Dependencies**
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+   ```bash
+   npm install
+   ```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
-=======
-# Facial-Recognition-Based-Attendance-System-with-Multi-Platform-Access
->>>>>>> 050ca3ed6fa7413b8492099da740ddbd85c84615
+3. **Prepare Face Data**
 
+   * Place images in `/public/faces/`
+   * Format: `<Name>.jpg` (e.g., `Aarohi.jpg`)
 
+4. **Start the Development Server**
+
+   ```bash
+   npm run dev
+   ```
+
+5. **Open in Browser**
+
+   * Visit: `http://localhost:3000/dashboard`
+   * Login as Teacher/Admin and click 📷 to start marking attendance
+
+---
+
+## 🔐 Authentication & Roles
+
+Powered by [Kinde](https://kinde.com):
+
+* 👨‍🏫 **Teacher**: Can mark and view attendance
+* 🧑‍💼 **Admin**: Can manage batches, students, and reports
+
+---
+
+## 🗃️ Database Schema
+
+**Tables Used:**
+
+* `batch` → `id`, `name`, `startDate`, `endDate`, `createdAt`
+* `students` → `id`, `name`, `email`, `batchId`, `createdAt`, `createdBy`
+* `attendance` → `id`, `studentId`, `date`, `isPresent`, `createdAt`
+
+---
+
+## 🧠 AI Model Details
+
+* Uses `@vladmandic/face-api` (modern wrapper over `face-api.js`)
+* Models stored in: `/public/models/`
+* Face descriptors are compared with labeled student images
+
+---
+
+## 💡 Future Scope
+
+* 🎯 Improve accuracy with YOLOv8 or Dlib
+* 📱 Add mobile app using React Native
+* 🧾 Export attendance data to PDF/Excel
+* 🔔 Notifications for latecomers
+* 📈 Student performance/insight pages
+
+---
+
+## 📄 License
+
+MIT License.
+Free to use, modify, and distribute for personal or academic purposes.
